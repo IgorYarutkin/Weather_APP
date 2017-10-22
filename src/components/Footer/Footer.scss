@@ -1,0 +1,29 @@
+@import 'styles/variables.scss';
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid $c-grey-light;
+
+  &__source,
+  &__copyright {
+    padding: 0 5px;
+    font-size: 12px;
+  }
+
+  &__copyright {
+    text-align: right;
+  }
+
+  &__source-link {
+    color: $c-white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      transition: text-decoration 0.4ms;
+    }
+  }
+}
