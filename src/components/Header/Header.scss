@@ -1,0 +1,27 @@
+@import 'styles/variables.scss';
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px 20px;
+
+  &__geoswitch {
+    width: 400px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__switches {
+    display: flex;
+    justify-content: flex-end;
+    width: 400px;
+  }
+
+  &__switch:first-child {
+    margin-right: 10px;
+  }
+}
