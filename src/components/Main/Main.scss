@@ -1,0 +1,126 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.Main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-top: 0;
+
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  
+  &__summary-left {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    padding-right: 20px;
+    width: 400px;
+    min-height: 30px;
+    background-color: $c-blue-dark;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+  }
+
+  &__summary-right {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    padding-left: 20px;
+    width: 400px;
+    min-height: 30px;
+    background-color: $c-blue-dark;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+
+  &__summary-icon {
+    position: absolute;
+    top: -10px;
+  }
+
+  &__temperature {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 30px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      @include center-poa;
+      width: 170px;
+      height: 30px;
+      background-color: $c-blue-dark;
+      z-index: 1;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      @include center-poa;
+      width: 140px;
+      height: 140px;
+      background-color: $c-blue-dark;
+      border-radius: 50%;
+      z-index: 1;
+    }
+  }
+
+  &__temperature-wrap {
+    position: relative;
+    font-size: 60px;
+    z-index: 10;
+  }
+
+  &__temperature-figure {
+    margin: 0 5px;
+  }
+
+  &__temperature-sign,
+  &__temperature-unicode {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+  }
+
+  &__temperature-sign {
+    left: 0;
+    font-size: 30px;
+    transform: translate(-100%, -50%);
+  }
+
+  &__temperature-unicode {
+    right: 0;
+    font-size: 24px;
+    transform: translate(100%, -50%);
+  }
+
+  &__column {
+    padding: 5px;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    &_3 {
+      width: calc((100% - 40px) / 3);
+    }
+  }
+
+  &__column-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+}
