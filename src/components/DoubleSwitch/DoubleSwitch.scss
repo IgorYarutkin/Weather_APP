@@ -1,0 +1,39 @@
+@import 'styles/variables.scss';
+
+.DoubleSwitch {
+  position: relative;
+  padding: 5px;
+  border: 2px solid $c-white;
+  border-radius: 17px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: $c-white;
+  }
+
+  &__button {
+    color: $c-white;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+
+    &:focus,
+    &:hover {
+      outline: none;
+    }
+
+    &:first-child {
+      margin-right: 5px;
+    }
+
+    &_state_active {
+      color: rgba($c-white, 0.6);
+      font-weight: normal;
+    }
+  }
+}
