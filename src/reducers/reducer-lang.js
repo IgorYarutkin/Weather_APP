@@ -1,5 +1,21 @@
-const reducerLang = (state='ru', action) => {
-  return state;
-};
+const initialState = {
+  availableLangs: {
+      ru: 'РУС',
+      en: 'ENG'
+  },
+  currentLang: 'ru'
+}
 
-export default reducerLang;
+const lang = (state = initialState, action) => {
+  switch (action.type) {
+      case 'CHANGE_LANG':
+          return {
+              ...state,
+              currentLang: action.payload.lang
+          }
+  }
+
+  return state;
+}
+
+export default lang;
