@@ -5,16 +5,35 @@ import Footer from '../Footer/Footer'
 
 import './App.css';
 
+import API_RESPOND from './App.json'
+
+const myStore = {
+  "api": {
+
+  },
+  "date": (() => Date.now())(),
+  "lang": "rus"
+}
+
+console.log('API_RESPOND: ', API_RESPOND);
+
 class App extends Component {
+  formatDateToString(date) {
+    const myDate = new Date(myStore.date);
+    return (
+      myDate.toLocaleString("ru", {day: "numeric", month: "long"})
+    );
+  }
+
   render() {
     return (
       <div className='App'>
         <div className='App__wrapper'>
           <div className='App__header'>
-            <Header />
+            <Header date={this.formatDateToString(myStore.date)} />
           </div>
           <div className='App__main'>
-            <Main />
+            <Main icon='02d'/>
           </div>
           <div className='App__footer'>
             <Footer />
