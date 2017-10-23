@@ -13,6 +13,7 @@ const lang = (state = initialState, action) => {
               ...state,
               currentLang: action.payload.lang
           }
+        default:
   }
 
   return state;
