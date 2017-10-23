@@ -21,6 +21,7 @@
     font-weight: bold;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 
     &:focus,
     &:hover {
@@ -34,6 +35,7 @@
     &_state_active {
       color: rgba($c-white, 0.6);
       font-weight: normal;
+      cursor: default;
     }
   }
 }

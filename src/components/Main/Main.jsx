@@ -8,7 +8,6 @@ class Main extends Component {
   iconSrc = `http://openweathermap.org/img/w/${this.props.icon}.png`;
 
   render() {
-    console.log('Icon scr: ', this.iconSrc);
     return (
       <div className='Main'>
         <div className='Main__summary'>
