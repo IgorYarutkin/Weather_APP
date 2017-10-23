@@ -1,0 +1,1 @@
+export const CHANGE_LANG = 'EXPORT_LANG';
