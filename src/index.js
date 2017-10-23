@@ -6,7 +6,6 @@ import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = configureStore();
-console.log('Store: ', store.getState());
 window.debugStore = store;
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'));

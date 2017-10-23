@@ -17,7 +17,6 @@ const mapStateToProps = (state) => {
      });
    }
 
-   console.log('TemperUnitSwitch items: ', items)
    return { items };
 }
 

@@ -15,8 +15,6 @@ const myStore = {
   "lang": "rus"
 }
 
-console.log('API_RESPOND: ', API_RESPOND);
-
 class App extends Component {
   formatDateToString(date) {
     const myDate = new Date(myStore.date);
