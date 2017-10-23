@@ -1,1 +1,2 @@
-export const CHANGE_LANG = 'EXPORT_LANG';
+export const CHANGE_LANG = 'CHANGE_LANG';
+export const CHANGE_TEMPER_UNIT = 'CHANGE_TEMPER_UNIT';

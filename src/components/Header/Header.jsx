@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { number } from 'prop-types';
-import DoubleSwitch from '../DoubleSwitch/DoubleSwitch';
 import LangSwitch from '../../containers/LangSwitch/LangSwitch';
+import TemperUnitSwitch from '../../containers/TemperUnitSwitch/TemperUnitSwitch';
 import GeoSwitch from '../GeoSwitch/GeoSwitch';
 
 import './Header.css';
@@ -20,12 +20,7 @@ class Header extends Component {
         <div className='Header__date'>{date}</div>
         <div className='Header__switches'>
           <div className='Header__switch'>
-            <DoubleSwitch
-              items={[
-                {title: 'С', active: true},
-                {title: 'F'}
-              ]}
-            />
+            <TemperUnitSwitch />
           </div>
           <div className='Header__switch'>
             <LangSwitch />

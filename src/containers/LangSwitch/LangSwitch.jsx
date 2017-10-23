@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
      });
    }
 
+   console.log('lang items: ', items)
    return { items };
 }
 
