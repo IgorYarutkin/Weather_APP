@@ -5,8 +5,6 @@ import Footer from '../Footer/Footer'
 
 import './App.css';
 
-import API_RESPOND from './App.json'
-
 const myStore = {
   "api": {
 
