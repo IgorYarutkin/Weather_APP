@@ -1,3 +1,5 @@
+import { CHANGE_LANG } from '../actions/actionTypes';
+
 const initialState = {
   availableLangs: {
       ru: 'РУС',
@@ -8,7 +10,7 @@ const initialState = {
 
 const lang = (state = initialState, action) => {
   switch (action.type) {
-      case 'CHANGE_LANG':
+      case CHANGE_LANG:
           return {
               ...state,
               currentLang: action.payload.lang

@@ -20,10 +20,10 @@ class Header extends Component {
         <div className='Header__date'>{date}</div>
         <div className='Header__switches'>
           <div className='Header__switch'>
-            <TemperUnitSwitch />
+            {<TemperUnitSwitch />}
           </div>
           <div className='Header__switch'>
-            <LangSwitch />
+            {<LangSwitch />}
           </div>
           </div>
       </div>
