@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import fetchWeather from '../../actions/fetch_weather';
+import { connect } from  'react-redux';
+import { fetchWeather } from '../../actions';
 
 import './Refresh.css';
 
@@ -11,7 +12,11 @@ class Refresh extends Component {
     return (
       <div className='Refresh'>
         <div className='Refresh__time'>23:54</div>
-        <button className='Refresh__button' onClick={fetchWeather} type='button' >
+        <button
+          className='Refresh__button'
+          type='button'
+          onClick={this.props.onClick}
+        >
           {<img src={refresh} className='Refresh__icon' alt='refresh' width='20' height='20' />}
         </button>
       </div>
@@ -19,7 +24,14 @@ class Refresh extends Component {
   }
 }
 
-export default Refresh; 
+const mapDispatchToProps = dispatch => ({
+  onClick: () => dispatch(fetchWeather())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Refresh)
 
 /* API_KEY = 026fb0d6a4fd13d72d840bcbffecc297
 
