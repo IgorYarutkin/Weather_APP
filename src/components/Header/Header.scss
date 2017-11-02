@@ -11,6 +11,10 @@
     width: 400px;
   }
 
+  &__date {
+    flex-shrink: 0;
+  }
+
   &__title {
     margin: 0;
   }

@@ -8,14 +8,9 @@ const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${API_KEY
 export function fetchWeather(city = 'Moscow') {
   const url = `${ROOT_URL}&q=${city},us`;
   const request = axios.get(url)
-    .then(function (response) {
-      console.log('Weather data :', response.data);
+
       return {
         type: FETCH_WEATHER,
-        payload: response.data
+        payload: request
       }
-    })
-    .catch(function (error) {
-      console.log('error: ', error);
-    });
 }
