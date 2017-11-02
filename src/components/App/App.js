@@ -5,28 +5,14 @@ import Footer from '../Footer/Footer'
 
 import './App.css';
 
-const myStore = {
-  "api": {
-
-  },
-  "date": (() => Date.now())(),
-  "lang": "rus"
-}
-
 class App extends Component {
-  formatDateToString(date) {
-    const myDate = new Date(myStore.date);
-    return (
-      myDate.toLocaleString("ru", {day: "numeric", month: "long"})
-    );
-  }
 
   render() {
     return (
       <div className='App'>
         <div className='App__wrapper'>
           <div className='App__header'>
-            <Header date={this.formatDateToString(myStore.date)} />
+            <Header />
           </div>
           <div className='App__main'>
             <Main icon='02d'/>
