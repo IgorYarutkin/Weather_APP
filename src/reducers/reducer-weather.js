@@ -1,11 +1,31 @@
 import { FETCH_WEATHER } from "../actions/actionTypes";
 
-export default function(state, action) {
-  console.log('weather-reducer action: ', action);
+const initialState = {
+  dt: null,
+  summary: null
+}
+
+export default function(state = initialState, action) {
 
   switch (action.type) {
     case FETCH_WEATHER:
-      return [ action.payload, ...state];
+      const fetchData = action.payload.data;
+      let fetchTime = new Date();
+      fetchTime = fetchTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      const summary = {
+        icon: fetchData.weather[0].icon,
+        main: fetchData.weather[0].main,
+        humidity: fetchData.main.humidity,
+        pressure: fetchData.main.pressure,
+        wind: fetchData.wind.speed,
+        time: fetchTime
+      }
+
+      return {
+        ...state,
+        dt: fetchData.dt,
+        summary: summary
+      };
 
     default:
       break;
