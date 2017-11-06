@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { number } from 'prop-types';
-import LangSwitch from '../../containers/LangSwitch/LangSwitch';
-import TemperUnitSwitch from '../../containers/TemperUnitSwitch/TemperUnitSwitch';
-import GeoSwitch from '../GeoSwitch/GeoSwitch';
+import LangSwitch from '../LangSwitch/LangSwitch';
+import TemperUnitSwitch from '../TemperUnitSwitch/TemperUnitSwitch';
+import GeoSwitch from '../../components/GeoSwitch/GeoSwitch';
 
 import './Header.css';
 
 let currentDate = new Date();
 currentDate = currentDate.valueOf();
-console.log(currentDate);
+
+const isFetchData = true;
 
 class Header extends Component {
   formatDateToString(date) {
@@ -28,7 +29,7 @@ class Header extends Component {
         <div className='Header__geoswitch'>
           <GeoSwitch />
         </div>
-        <div className='Header__date'>{this.formatDateToString(date)}</div>
+        <div className='Header__date'>{isFetchData ? '24 ноября' : '10 октября'}</div>
         <div className='Header__switches'>
           <div className='Header__switch'>
             {<TemperUnitSwitch />}
@@ -60,4 +61,7 @@ export default Header;
       myDate.toLocaleString("ru", {day: "numeric", month: "long"})
     );
   }
+
+
+  <div className='Header__date'>{this.formatDateToString(date)}</div>
 */
