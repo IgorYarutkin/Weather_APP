@@ -12,9 +12,11 @@ export default function(state = {}, action) {
         humidity: fetchData.main.humidity,
         pressure: fetchData.main.pressure,
         wind: fetchData.wind.speed,
+        windDeg: fetchData.wind.deg,
         temper: fetchData.main.temp,
-        descriptionShort: fetchData.weather[0].main,
-        description: fetchData.weather[0].descriptionб
+        temperMax: fetchData.main.temp_max,
+        temperMin: fetchData.main.temp_min,
+        description: fetchData.weather[0].description
       }
 
       return {
