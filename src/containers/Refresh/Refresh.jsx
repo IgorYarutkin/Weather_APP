@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { string } from 'prop-types';
 import { connect } from  'react-redux';
 import { fetchWeather } from '../../actions';
 
@@ -7,11 +8,13 @@ import './Refresh.css';
 import refresh from './refresh.svg'
 
 class Refresh extends Component {
-
   render() {
+    const { fetchTime } = this.props;
+    console.log(fetchTime);
+
     return (
       <div className='Refresh'>
-        <div className='Refresh__time'>23:54</div>
+        <div className='Refresh__time'>{ fetchTime }</div>
         <button
           className='Refresh__button'
           type='button'
@@ -24,14 +27,32 @@ class Refresh extends Component {
   }
 }
 
+Refresh.PropType = {
+  fetchTime: string
+}
+
+Refresh.defaultProps = {
+  fetchTime: '--'
+}
+
+const mapStateToProps = (state) => {
+  /*const { weather } = state;
+  const { fetchTime } = weather.dt ? weather.dt : undefined;
+  return { fetchTime };*/
+  const fetchTime = state.weather.fetchTime;
+  return { fetchTime };
+}
+
 const mapDispatchToProps = dispatch => ({
   onClick: () => dispatch(fetchWeather())
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Refresh)
+
+
 
 /* API_KEY = 026fb0d6a4fd13d72d840bcbffecc297
 
