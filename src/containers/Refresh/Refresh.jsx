@@ -10,7 +10,6 @@ import refresh from './refresh.svg'
 class Refresh extends Component {
   render() {
     const { fetchTime } = this.props;
-    console.log(fetchTime);
 
     return (
       <div className='Refresh'>
@@ -57,6 +56,4 @@ export default connect(
 /* API_KEY = 026fb0d6a4fd13d72d840bcbffecc297
 
 api.openweathermap.org/data/2.5/weather?id=524901&APPID=026fb0d6a4fd13d72d840bcbffecc297
-1 hPa = 0.75006375541921 mmHg
-
 */

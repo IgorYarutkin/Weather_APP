@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header'
-import Main from '../Main/Main'
-import Footer from '../Footer/Footer'
+import Header from '../../containers/Header/Header';
+import Main from '../../containers/Main/Main';
+import Footer from '../Footer/Footer';
 
 import './App.css';
 
@@ -15,7 +15,7 @@ class App extends Component {
             <Header />
           </div>
           <div className='App__main'>
-            <Main icon='02d'/>
+            <Main />
           </div>
           <div className='App__footer'>
             <Footer />

@@ -1,12 +1,6 @@
 import { FETCH_WEATHER } from "../actions/actionTypes";
 
-const initialState = {
-  dt: null,
-  summary: null,
-  fetchTime: null
-}
-
-export default function(state = initialState, action) {
+export default function(state = {}, action) {
 
   switch (action.type) {
     case FETCH_WEATHER:
@@ -26,7 +20,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         dt: fetchData.dt,
-        summary: summary,
+        summary,
         fetchTime
       };
 

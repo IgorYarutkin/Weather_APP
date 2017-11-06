@@ -20,9 +20,11 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 5px 10px;
-    padding-right: 20px;
-    width: 400px;
+    padding-right: 45px;
+    margin-right: -5px;
+    width: 50%;
     min-height: 30px;
     background-color: $c-blue-dark;
     border-top-left-radius: 14px;
@@ -32,9 +34,11 @@
   &__summary-right {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: -5px;
     padding: 5px 10px;
-    padding-left: 20px;
-    width: 400px;
+    padding-left: 45px;
+    width: 50%;
     min-height: 30px;
     background-color: $c-blue-dark;
     border-top-right-radius: 14px;
@@ -51,19 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
     font-size: 30px;
-
-    &::before {
-      position: absolute;
-      content: '';
-      @include center-poa;
-      width: 170px;
-      height: 30px;
-      background-color: $c-blue-dark;
-      z-index: 1;
-    }
 
     &::after {
       position: absolute;
@@ -87,23 +79,12 @@
     margin: 0 5px;
   }
 
-  &__temperature-sign,
   &__temperature-unicode {
     position: absolute;
-    top: 50%;
-    z-index: 10;
-  }
-
-  &__temperature-sign {
-    left: 0;
-    font-size: 30px;
-    transform: translate(-100%, -50%);
-  }
-
-  &__temperature-unicode {
-    right: 0;
+    bottom: 0;
+    right: 50%;
     font-size: 24px;
-    transform: translate(100%, -50%);
+    transform: translate(50%, 100%);
   }
 
   &__column {

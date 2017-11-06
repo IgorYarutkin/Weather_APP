@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { string, number, oneOf, oneOfType } from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Refresh from '../Refresh/Refresh';
+import Refresh from '../../containers/Refresh/Refresh';
 
 import './Main.css';
 
@@ -10,6 +10,7 @@ class Main extends Component {
 
   render() {
     const {
+      dt,
       icon,
       wind,
       temper,
@@ -20,13 +21,13 @@ class Main extends Component {
       description
     } = this.props
 
+    const temperSignCelsius = dt ? <span>&#8451;</span> : '';
+    const temperSignFarenheit = dt ? <span>&#8457;</span> : '';
     let temperFull, temperShort;
-    const temperSign = `\&#8451`;
 
     if (typeof(temper) === 'number') {
-      temperFull = currentTemperUnit === 'celsius' ? this.props.temper : this.props.temper * 9 / 5 + 32
-      temperFull = temper > 0 ? `+${temper}` : temper;
-      temperShort = temper > 0 ? `+${_.round(temper)}` : _.round(temper)
+      temperFull = _.round(currentTemperUnit === 'celsius' ? this.props.temper : this.props.temper * 9 / 5 + 32, 1);
+      temperShort = _.round(temperFull);
     } else {
       temperShort = temper; 
       temperFull = temper;
@@ -48,8 +49,8 @@ class Main extends Component {
           </div>
           <div className='Main__temperature'>
               <div className='Main__temperature-wrap'>
-                <span className='Main__temperature-figure'>{ temperShort }</span>
-                <span className='Main__temperature-unicode'></span>
+                <span className='Main__temperature-figure'>{ temperShort > 0 ? `+${temperShort}` : temperShort }</span>
+                <span className='Main__temperature-unicode'>{currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
               </div>
           </div>
           <div className='Main__summary-right'>
@@ -64,7 +65,7 @@ class Main extends Component {
           <div className='Main__column-line'>{ description }</div>
           <div className='Main__column-line'>
             <span>Температура сейчас:</span>
-            <span>{ temperFull }</span>
+            <span>{ temperFull > 0 ? `+${temperFull}` : temperFull }</span>
           </div>
           <div className='Main__column-line'>
             <span>Минимальная температура:</span>
@@ -142,16 +143,21 @@ const mapStateToProps = (state) => {
   const { weather, temperUnit } = state;
   const temper = weather.summary ? weather.summary.temper : undefined;
   const icon = weather.summary ? weather.summary.icon : undefined;
+  const pressure = weather.summary ? weather.summary.pressure : undefined;
+  const humidity = weather.summary ? weather.summary.humidity : undefined;
   const wind = weather.summary ? weather.summary.wind : undefined;
   const descriptionShort = weather.summary ? weather.summary.descriptionShort : undefined;
   const description = weather.summary ? weather.summary.description : undefined;
   const { currentTemperUnit } = temperUnit;
-  console.log(currentTemperUnit);
+  const dt = weather.dt;
 
   return (
-    { 
+    {
+      dt,
       temper,
       icon,
+      pressure,
+      humidity,
       wind,
       currentTemperUnit,
       description,
@@ -163,3 +169,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Main); 
 
 // Для перевода температуры из шкалы Цельсия в шкалу Фаренгейта нужно умножить исходное число на 9/5 и прибавить 32.
+// 1 hPa = 0.75006375541921 mmHg

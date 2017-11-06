@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { number } from 'prop-types';
+import { connect } from 'react-redux';
 import LangSwitch from '../LangSwitch/LangSwitch';
 import TemperUnitSwitch from '../TemperUnitSwitch/TemperUnitSwitch';
 import GeoSwitch from '../../components/GeoSwitch/GeoSwitch';
@@ -9,27 +10,34 @@ import './Header.css';
 let currentDate = new Date();
 currentDate = currentDate.valueOf();
 
-const isFetchData = true;
-
 class Header extends Component {
   formatDateToString(date) {
-    const myDate = new Date(date);
+    const myDate = date ? new Date(date) : new Date();
     return (
       myDate.toLocaleString("ru", {day: "numeric", month: "long"})
     );
   }
 
+  formatTimeToString(time) {
+    const myTime = new Date(time);
+    return (
+      myTime.toLocaleTimeString('ru', {hour: '2-digit', minute:'2-digit'})
+    )
+  }
+
   render() {
     const {
-      date
+      dt
     } = this.props
+
+    const weatherDataDateStamp = <span>{this.formatDateToString(dt * 1000)}, {this.formatTimeToString(dt * 1000)}</span>
 
     return (
       <div className='Header'>
         <div className='Header__geoswitch'>
           <GeoSwitch />
         </div>
-        <div className='Header__date'>{isFetchData ? '24 ноября' : '10 октября'}</div>
+        <div className='Header__date'>{dt ? weatherDataDateStamp : this.formatDateToString()}</div>
         <div className='Header__switches'>
           <div className='Header__switch'>
             {<TemperUnitSwitch />}
@@ -44,14 +52,22 @@ class Header extends Component {
 }
 
 Header.PropTypes = {
-  date: number
+  date: number,
+  dt: number
 }
 
 Header.defaultProps = {
   date: currentDate
 }
 
-export default Header;
+const mapStateToProps = state => {
+  const { weather } = state;
+  const dt = weather.dt;
+
+  return { dt };
+};
+
+export default connect(mapStateToProps)(Header);
 
 
 /*
