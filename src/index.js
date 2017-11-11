@@ -8,7 +8,12 @@ import reducers from './reducers';
 import App from './components/App/App';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const storeWithMiddleware = createStoreWithMiddleware(reducers)
+const currentCity = localStorage.getItem('activeCity') || null;
+const storeWithMiddleware = createStoreWithMiddleware(reducers, {city: { currentCity }})
+storeWithMiddleware.subscribe( () => {
+  const state = storeWithMiddleware.getState();
+  localStorage.setItem('activeCity', state.city.currentCity);
+} );
 window.debugStore = storeWithMiddleware;
 
 ReactDOM.render(
