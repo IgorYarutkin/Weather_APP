@@ -2,7 +2,7 @@ import { CHANGE_CITY, ADD_CITY } from '../actions/actionTypes';
 
 const initialState = {
     cities: [],
-    currentCity: 'geoposition'
+    activeCity: 'Cheboksary'
   }
 
 const city = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const city = (state = initialState, action) => {
       case CHANGE_CITY:
           return {
               ...state,
-              currentCity: action.payload.city
+              activeCity: action.payload.city
           }
 
         case ADD_CITY:
