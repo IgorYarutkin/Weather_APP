@@ -2,17 +2,19 @@
 @import 'styles/mixins.scss';
 
 .Main {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
   padding-top: 0;
+  z-index: 1;
 
   &__summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px;
-    margin-bottom: 40px;
+    margin-top: 50px;
+    margin-bottom: 60px;
     width: 100%;
   }
   
@@ -20,11 +22,13 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     padding: 5px 10px;
-    padding-right: 45px;
+    padding-right: 75px;
     margin-right: -5px;
     width: 50%;
+    height: 100%;
     min-height: 30px;
     background-color: $c-blue-dark;
     border-top-left-radius: 14px;
@@ -34,20 +38,33 @@
   &__summary-right {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     margin-left: -5px;
     padding: 5px 10px;
-    padding-left: 45px;
+    padding-left: 75px;
     width: 50%;
+    height: 100%;
     min-height: 30px;
     background-color: $c-blue-dark;
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
   }
 
+  &__summary-item {
+    &_icon {
+      width: 50px;
+    }
+
+    &_description {
+      width: 100px;
+    }
+  }
+
   &__summary-icon {
     position: absolute;
-    top: -10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &__temperature {
@@ -70,7 +87,7 @@
   }
 
   &__temperature-wrap {
-    position: relative;
+    position: absolute;
     font-size: 60px;
     z-index: 10;
   }

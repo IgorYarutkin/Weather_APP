@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { boolean, string, number, oneOf, oneOfType } from 'prop-types';
+import { bool, string, number, oneOf, oneOfType } from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Refresh from '../../containers/Refresh/Refresh';
@@ -67,14 +67,14 @@ class Main extends Component {
       <div className='Main'>
         <div className='Main__summary'>
           <div className='Main__summary-left'>
-            <div className='Main__summary-item'>
+            <div className='Main__summary-item Main__summary-item_icon'>
               <img
                 src={`http://openweathermap.org/img/w/${icon}.png`}
                 className='Main__summary-icon'
                 alt='icon'
               />
             </div>
-            <div className='Main__summary-item'>{ description }</div>
+            <div className='Main__summary-item Main__summary-item_description'>{ description }</div>
             <div className='Main__summary-item'>{pressure_} { currentLang === 'ru' ? 'мм.рт.cт.' : 'hPa'}</div>
           </div>
           <div className='Main__temperature'>
@@ -112,7 +112,7 @@ class Main extends Component {
         <div className='Main__column Main__column_3'>
           <div className='Main__column-line'>
             <span>Давление:</span>
-            <span>{pressure_} мм.рт.ст.</span>
+            <span>{pressure_} { currentLang === 'ru' ? 'мм.рт.cт.' : 'hPa'}</span>
           </div>
           <div className='Main__column-line'>
             <span>Ветер:</span>
@@ -152,8 +152,8 @@ class Main extends Component {
 }
 
 Main.PropType = {
-  snow: boolean,
-  rain: boolean,
+  snow: bool,
+  rain: bool,
   icon: string,
   temper: oneOfType([ number, string ]),
   temperMin: oneOfType([ number, string ]),
