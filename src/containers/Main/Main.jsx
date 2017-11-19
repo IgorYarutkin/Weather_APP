@@ -91,61 +91,56 @@ class Main extends Component {
             </div>
           </div>
         </div>
-        <div className='Main__column Main__column_3'>
-          <div className='Main__column-line'>
-            <span>Температура сейчас:</span>
-            <span>{ temperFull > 0 ? `+${temperFull}` : temperFull } {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
+        <div className='Main__content'>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Температура сейчас:</span>
+            <span className='Main__line-content Main__line-content_right'>{ temperFull > 0 ? `+${temperFull}` : temperFull } {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Минимальная температура:</span>
-            <span>{temperMin_ > 0 ? `+${temperMin_}` : temperMin_} {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Минимальная температура:</span>
+            <span className='Main__line-content Main__line-content_right'>{temperMin_ > 0 ? `+${temperMin_}` : temperMin_} {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Максимальная температура:</span>
-            <span>{temperMax_ > 0 ? `+${temperMax_}` : temperMax_} {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Максимальная температура:</span>
+            <span className='Main__line-content Main__line-content_right'>{temperMax_ > 0 ? `+${temperMax_}` : temperMax_} {currentTemperUnit === 'celsius' ? temperSignCelsius: temperSignFarenheit}</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Влажность:</span>
-            <span>{ humidity } %</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Влажность:</span>
+            <span className='Main__line-content Main__line-content_right'>{ humidity } %</span>
           </div>
-        </div>
-        <div className='Main__column Main__column_3'>
-          <div className='Main__column-line'>
-            <span>Давление:</span>
-            <span>{pressure_} { currentLang === 'ru' ? 'мм.рт.cт.' : 'hPa'}</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Давление:</span>
+            <span className='Main__line-content Main__line-content_right'>{pressure_} { currentLang === 'ru' ? 'мм.рт.cт.' : 'hPa'}</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Ветер:</span>
-            <span>{ wind } м/с</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Ветер:</span>
+            <span className='Main__line-content Main__line-content_right'>{ wind } м/с</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Направление:</span>
-            <span>{ windDeg } &#176;</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Направление:</span>
+            <span className='Main__line-content Main__line-content_right'>{ windDeg } &#176;</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Облачность:</span>
-            <span>{clouds} %</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Облачность:</span>
+            <span className='Main__line-content Main__line-content_right'>{clouds} %</span>
           </div>
-        </div>
-        <div className='Main__column Main__column_3'>
-          <div className='Main__column-line'>
-            <span>Осадки:</span>
-            <span>{ precipitation }</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Осадки:</span>
+            <span className='Main__line-content Main__line-content_right'>{ precipitation }</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Восход:</span>
-            <span>{ sunrise_ }</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Восход:</span>
+            <span className='Main__line-content Main__line-content_right'>{ sunrise_ }</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Закат:</span>
-            <span>{ sunset_ }</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Закат:</span>
+            <span className='Main__line-content Main__line-content_right'>{ sunset_ }</span>
           </div>
-          <div className='Main__column-line'>
-            <span>Продолжительность дня:</span>
-            <span>{ dayDuration }</span>
+          <div className='Main__content-line'>
+            <span className='Main__line-content Main__line-content_left'>Продолжительность дня:</span>
+            <span className='Main__line-content Main__line-content_right'>{ dayDuration }</span>
           </div>
         </div>
-
       </div>
     );
   }
