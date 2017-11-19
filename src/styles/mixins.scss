@@ -3,3 +3,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder           { @content; }
+  &::-moz-placeholder          { @content; }
+  &:-ms-input-placeholder      { @content; }  
+}
