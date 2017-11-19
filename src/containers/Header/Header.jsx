@@ -3,7 +3,7 @@ import { number } from 'prop-types';
 import { connect } from 'react-redux';
 import LangSwitch from '../LangSwitch/LangSwitch';
 import TemperUnitSwitch from '../TemperUnitSwitch/TemperUnitSwitch';
-import GeoSwitch from '../../components/GeoSwitch/GeoSwitch';
+import CitySwitch from '../CitySwitch/CitySwitch'
 
 import './Header.css';
 
@@ -34,8 +34,8 @@ class Header extends Component {
 
     return (
       <div className='Header'>
-        <div className='Header__geoswitch'>
-          <GeoSwitch />
+        <div className='Header__city-select'>
+          <CitySwitch />
         </div>
         <div className='Header__date'>{dt ? weatherDataDateStamp : this.formatDateToString()}</div>
         <div className='Header__switches'>
