@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { connect } from  'react-redux';
 import { fetchWeather } from '../../actions';
 
@@ -9,7 +9,11 @@ import refresh from './refresh.svg'
 
 class Refresh extends Component {
   render() {
-    const { fetchTime } = this.props;
+    const {
+      fetchTime,
+      activeCity,
+      onRefresh
+    } = this.props;
 
     return (
       <div className='Refresh'>
@@ -17,7 +21,7 @@ class Refresh extends Component {
         <button
           className='Refresh__button'
           type='button'
-          onClick={this.props.onClick}
+          onClick={ () => { onRefresh(activeCity) } }
         >
           {<img src={refresh} className='Refresh__icon' alt='refresh' width='20' height='20' />}
         </button>
@@ -27,7 +31,9 @@ class Refresh extends Component {
 }
 
 Refresh.PropType = {
-  fetchTime: string
+  fetchTime: string,
+  onRefresh: func,
+  activeCity: string
 }
 
 Refresh.defaultProps = {
@@ -35,15 +41,13 @@ Refresh.defaultProps = {
 }
 
 const mapStateToProps = (state) => {
-  /*const { weather } = state;
-  const { fetchTime } = weather.dt ? weather.dt : undefined;
-  return { fetchTime };*/
-  const fetchTime = state.weather.fetchTime;
-  return { fetchTime };
+  const { fetchTime } = state.weather;
+  const { activeCity  } = state.city;
+  return { fetchTime, activeCity };
 }
 
 const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(fetchWeather())
+  onRefresh: (city) => dispatch(fetchWeather(city))
 });
 
 export default connect(
