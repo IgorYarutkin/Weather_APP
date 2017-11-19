@@ -8,11 +8,13 @@ import reducers from './reducers';
 import App from './components/App/App';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const currentCity = localStorage.getItem('activeCity') || null;
-const storeWithMiddleware = createStoreWithMiddleware(reducers, {city: { currentCity }})
+const activeCity = localStorage.getItem('activeCity') || 'Moscow';
+const cities = localStorage.getItem('cities') || ['Moscow', 'Cheboksary'];
+const storeWithMiddleware = createStoreWithMiddleware(reducers, {city: { activeCity, cities }})
 storeWithMiddleware.subscribe( () => {
   const state = storeWithMiddleware.getState();
-  localStorage.setItem('activeCity', state.city.currentCity);
+  localStorage.setItem('activeCity', state.city.activeCity);
+  localStorage.setItem('fetchTime', state.weather.fetchTime);
 } );
 window.debugStore = storeWithMiddleware;
 
