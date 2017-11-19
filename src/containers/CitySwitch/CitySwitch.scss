@@ -1,0 +1,157 @@
+@import 'styles/variables.scss';
+
+.CitySwitch {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid $c-white;
+  border-radius: 17px;
+  z-index: 1;
+
+  &_isOpened {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-color: #88A8FF;
+  }
+
+  &__cities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__wrapper-activeCity {
+    display: flex;
+  }
+
+  &__activeCity {
+    position: relative;
+    padding: 5px 10px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 2px;
+      background-color: $c-white;
+    }
+  }
+
+  &_isOpened &__activeCity::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: -20px;
+    height: 2px;
+    background-color: $c-white;
+  }
+
+  &__wrapper-button {
+    position: relative;
+    width: 20px;
+    z-index: 1;
+  }
+
+  &__button {
+    position: relative;
+    padding-left: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 5px;
+      right: 50%;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 10px solid $c-white;
+      transform: translate(50%, 50%);
+      transition: scale 0.5s ease-out;
+      z-index: 5;
+    }
+
+    &:hover::after {
+      transform: translate(50%, 50%) scale(1.2);
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &_isOpened &__button::after {
+    top: 4px;
+    border-top: none;
+    border-bottom: 10px solid $c-white;
+  }
+
+  &_isOpened &__button:hover::after {
+    top: 2px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 12px solid $c-white;
+  }
+
+  &__cities-list {
+    display: none;
+    margin: 0;
+    padding: 5px 10px;
+    width: 100%;
+    list-style-type: none;
+  }
+
+  &_isOpened &__cities-list {
+    position: relative;
+    display: block;
+    z-index: 20;
+  }
+
+  &__city-item {
+    position: relative;
+  }
+
+  &__city {
+    padding: 5px 0;
+    width: 100%;
+    color: inherit;
+    font-size: inherit;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      left: -10px;
+      right: -10px;
+      background-color: rgba($c-white, 0.2);
+    }
+
+    &:focus {
+      outline: none;
+      color: rgba($c-white, 0.8);
+    }
+  }
+
+  &__modal {
+    position: relative;
+    z-index: 20;
+  }
+}
