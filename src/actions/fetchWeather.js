@@ -6,7 +6,7 @@ const lang = 'ru';
 const API_KEY = '026fb0d6a4fd13d72d840bcbffecc297';
 const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}&units=metric&lang=${lang}`
 export function fetchWeather(city = 'Moscow') {
-  const url = `${ROOT_URL}&q=${city},ru`;
+  const url = `${ROOT_URL}&q=${city}`;
   const request = axios.get(url)
 
       return {
