@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
-import { selectCity, changeCity } from '../../actions';
+import { selectCity, changeCity, changeModal, citySwitch, fetchWeather } from '../../actions';
 
 import './CitySelect.css';
 
@@ -14,20 +15,32 @@ class CitySelect extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  componentDidMount() {
+    ReactDOM.findDOMNode(this.refs.cityInput).focus()
+  }
+
   onInput(event) {
     this.setState({ term: event.target.value });
-    console.log('Ввод символов: ', this.state.term)
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log('Submit');
-    // Добавить диспатчи для добавления города в хранилище, смены активного города
-    // и закрытия модалки + Sankt-Peterburg
+    const {
+      onSelectCity,
+      onChangeCity,
+      onClose,
+      onCitySwitchShow,
+      onRefresh
+    } = this.props;
+    // Добавить диспатчи для запроса данных о погоде
+    // Sankt-Peterburg
     // this.props.fetchWeather(this.state.term);
-    this.props.onSelectCity(this.state.term);
-    this.props.onChangeCity(this.state.term);
+    onSelectCity(this.state.term);
+    onChangeCity(this.state.term);
     this.setState({ term: '' });
+    onClose(false);
+    onCitySwitchShow(false);
+    onRefresh(this.state.term);
   }
 
   render() {
@@ -43,6 +56,7 @@ class CitySelect extends Component {
           placeholder='Введите название города'
           value={this.state.term}
           onInput={this.onInput}
+          ref='cityInput'
         />
         <button
           className='CitySelect__button'
@@ -58,7 +72,8 @@ class CitySelect extends Component {
 
 CitySelect.propType = {
   onSelectCity: func,
-  onChangeCity: func
+  onChangeCity: func,
+  onRefresh: func
 }
 
 CitySelect.defaultProps = {
@@ -66,7 +81,18 @@ CitySelect.defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   onSelectCity: (city) => dispatch(selectCity(city)),
-  onChangeCity: city => dispatch(changeCity(city))
+  onChangeCity: city => dispatch(changeCity(city)),
+  onClose: (state) => dispatch(changeModal(state)),
+  onCitySwitchShow: (state) => dispatch(citySwitch(state)),
+  onRefresh: (city) => dispatch(fetchWeather(city))
 })
 
 export default connect(null, mapDispatchToProps)(CitySelect);
+
+
+/*
+var TestInput = React.createClass({
+componentDidMount: function() { //ставим фокус в input
+ReactDOM.findDOMNode(this.refs.myTestInput).focus();
+},
+*/
