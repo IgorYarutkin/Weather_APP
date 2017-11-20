@@ -1,0 +1,33 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.CitySelect {
+  &__input {
+    padding: 5px 10px;
+    width: calc(100% - 20px);
+    color: $c-white;
+    font-size: 14px;
+    background-color: $c-blue;
+    border: 2px solid $c-white;
+
+    @include placeholder {
+      color: $c-white;
+    }
+  }
+
+  &__button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px 15px;
+    color: $c-white;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: $c-blue-dark;
+    border: 3px solid $c-white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

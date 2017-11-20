@@ -1,4 +1,4 @@
-import { CHANGE_CITY, ADD_CITY } from '../actions/actionTypes';
+import { CHANGE_CITY, SELECT_CITY } from '../actions/actionTypes';
 
 const initialState = {
     cities: [],
@@ -13,11 +13,15 @@ const city = (state = initialState, action) => {
               activeCity: action.payload.city
           }
 
-        case ADD_CITY:
-          return [
+        case SELECT_CITY:
+          console.log('action.payload: ', action.payload.city);
+          return {
             ...state,
-            action.payload.city
-          ]
+            cities: [
+              ...state.cities,
+              action.payload.city
+            ]
+          }
 
         default:
   }
