@@ -1,4 +1,5 @@
-import { CHANGE_CITY, SELECT_CITY } from '../actions/actionTypes';
+import * as R from 'ramda';
+import { CHANGE_CITY, SELECT_CITY, DELETE_CITY } from '../actions/actionTypes';
 
 const initialState = {
     cities: [],
@@ -14,13 +15,18 @@ const city = (state = initialState, action) => {
           }
 
         case SELECT_CITY:
-          console.log('action.payload: ', action.payload.city);
           return {
             ...state,
             cities: [
               ...state.cities,
               action.payload.city
             ]
+          }
+
+          case DELETE_CITY:
+          return {
+            ...state,
+            cities: R.filter(item => item !== action.payload.city, state.cities)
           }
 
         default:
