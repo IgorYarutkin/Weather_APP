@@ -23,7 +23,13 @@ class Refresh extends Component {
           type='button'
           onClick={ () => { onRefresh(activeCity) } }
         >
-          {<img src={refresh} className='Refresh__icon' alt='refresh' width='20' height='20' />}
+          <img
+          src={refresh}
+          className='Refresh__icon'
+          alt='refresh'
+          width='20'
+          height='20'
+        />
         </button>
       </div>
     );
