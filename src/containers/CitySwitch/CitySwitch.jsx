@@ -3,40 +3,41 @@ import { string, func, bool,   arrayOf } from 'prop-types';
 import cx from 'classnames';
 import id from 'shortid';
 import { connect } from 'react-redux';
+import { changeCity, fetchWeather, changeModal, citySwitch } from '../../actions';
 import Modal from '../Modal/Modal';
-import { changeCity, fetchWeather, changeModal } from '../../actions';
+import SitySelect from '../CitySelect/CitySelect';
 
 import './CitySwitch.css';
 
+// ToDo Сделать активный класс элементу списка городов для активного города
 class CitySwitch extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isOpened: false };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(event) {
-    this.setState({ isOpened: !this.state.isOpened });
+    this.props.onCitySwitchShow(true);
   }
 
   render() {
     const {
       cities,
       activeCity,
-      onCityChange,
+      onChangeCity,
       onRefresh,
       onAddCity,
-      isModalOpened
+      isModalOpened,
+      isCitySwitchOpened,
+      onCitySwitchShow
     } = this.props;
-
-    const { isOpened } = this.state;
 
     const renderCity = (city) => {
       const onCityClick = () => {
-        onCityChange(city);
-        this.setState({ isOpened: !this.state.isOpened });
-        onRefresh(city)
+        onChangeCity(city);
+        onCitySwitchShow(false);
+        onRefresh(city);
       };
       return (
         <li className='CitySwitch__city-item' key={id.generate()}>
@@ -58,7 +59,7 @@ class CitySwitch extends Component {
       <div
         className={cx(
           'CitySwitch', 
-          {'CitySwitch_isOpened': isOpened}
+          {'CitySwitch_isOpened': isCitySwitchOpened}
         )}
       >
           <div className='CitySwitch__cities'>
@@ -86,7 +87,9 @@ class CitySwitch extends Component {
           </div>
           { isModalOpened &&
             <div className='CitySwitch__modal'>
-              <Modal />
+              <Modal header='Выберите город'>
+                <SitySelect />
+              </Modal>
             </div>
           }
         </div>
@@ -99,10 +102,12 @@ CitySwitch.propType = {
   cities: arrayOf(string),
   activeCity: string,
   onChangeActiveCity: func,
-  onCityChange: func,
+  onChangeCity: func,
   onRefresh: func,
   onAddCity: func,
-  isModalOpened: bool
+  isModalOpened: bool,
+  isCitySwitchOpened: bool,
+  onCitySwitchShow: func
 }
 
 CitySwitch.defaultProps = {
@@ -112,14 +117,16 @@ CitySwitch.defaultProps = {
 const mapStateToProps = (state) => {
   const { activeCity, cities } = state.city
   const { isModalOpened } = state.modal
+  const { isCitySwitchOpened } = state.citySwitch
 
-  return { activeCity, cities, isModalOpened }
+  return { activeCity, cities, isModalOpened, isCitySwitchOpened }
 }
 
 const mapDispatchToProps = dispatch => ({
-    onCityChange: city => dispatch(changeCity(city)),
+    onChangeCity: city => dispatch(changeCity(city)),
     onRefresh: (city) => dispatch(fetchWeather(city)),
-    onAddCity: (state) => dispatch(changeModal(state))
+    onAddCity: (state) => dispatch(changeModal(state)),
+    onCitySwitchShow: (state) => dispatch(citySwitch(state))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitySwitch);
