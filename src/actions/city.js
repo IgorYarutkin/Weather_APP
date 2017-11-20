@@ -12,10 +12,11 @@ export const selectCity = city => {
     type: SELECT_CITY,
     payload: { city }
   }
+}
 
-  export const deleteCity = city => {
-    return {
-      type: DELETE_CITY,
-      payload: { city }
-    }
+export const deleteCity = city => {
+  return {
+    type: DELETE_CITY,
+    payload: { city }
+  }
 }
