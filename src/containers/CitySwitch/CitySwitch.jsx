@@ -3,9 +3,11 @@ import { string, func, bool,   arrayOf } from 'prop-types';
 import cx from 'classnames';
 import id from 'shortid';
 import { connect } from 'react-redux';
-import { changeCity, fetchWeather, changeModal, citySwitch } from '../../actions';
+import { changeCity, deleteCity, fetchWeather, changeModal, citySwitch } from '../../actions';
 import Modal from '../Modal/Modal';
 import SitySelect from '../CitySelect/CitySelect';
+
+import bin from './bin.svg';
 
 import './CitySwitch.css';
 
@@ -18,7 +20,7 @@ class CitySwitch extends Component {
   }
 
   onClick(event) {
-    this.props.onCitySwitchShow(true);
+    this.props.onCitySwitchShow(!this.props.isCitySwitchOpened);
   }
 
   render() {
@@ -30,7 +32,8 @@ class CitySwitch extends Component {
       onAddCity,
       isModalOpened,
       isCitySwitchOpened,
-      onCitySwitchShow
+      onCitySwitchShow,
+      onCityDelete
     } = this.props;
 
     const renderCity = (city) => {
@@ -39,12 +42,44 @@ class CitySwitch extends Component {
         onCitySwitchShow(false);
         onRefresh(city);
       };
+
+      const onDelete = () => {
+        if (cities.length === 1) {return null}
+        if (activeCity !== city) {
+          onCityDelete(city);
+        } else {
+          onCityDelete(city);
+          onChangeCity(cities[0]);
+          onRefresh(cities[0]);
+        }
+      }
+
       return (
-        <li className='CitySwitch__city-item' key={id.generate()}>
-          <button className='CitySwitch__city' type='button' onClick={onCityClick}>
+        <li
+          className='CitySwitch__city-item'
+          key={id.generate()}
+        >
+          <button
+            className='CitySwitch__city'
+            type='button'
+            onClick={onCityClick}
+          >
             <span className='CitySwitch__city-name'>
               {city}
             </span>
+          </button>
+          <button
+            className='CitySwitch__city-delete'
+            type='button'
+            onClick={onDelete}
+          >
+            <img
+              src={bin}
+              className='CitySwitch__icon'
+              alt='Delete'
+              width='21'
+              height='26'
+            />
           </button>
         </li>
       )
@@ -107,7 +142,8 @@ CitySwitch.propType = {
   onAddCity: func,
   isModalOpened: bool,
   isCitySwitchOpened: bool,
-  onCitySwitchShow: func
+  onCitySwitchShow: func,
+  onCityDelete: func
 }
 
 CitySwitch.defaultProps = {
@@ -126,7 +162,8 @@ const mapDispatchToProps = dispatch => ({
     onChangeCity: city => dispatch(changeCity(city)),
     onRefresh: (city) => dispatch(fetchWeather(city)),
     onAddCity: (state) => dispatch(changeModal(state)),
-    onCitySwitchShow: (state) => dispatch(citySwitch(state))
+    onCitySwitchShow: (state) => dispatch(citySwitch(state)),
+    onCityDelete: (city) => dispatch(deleteCity(city))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitySwitch);

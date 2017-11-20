@@ -122,9 +122,11 @@
 
   &__city-item {
     position: relative;
+    display: flex;
   }
 
   &__city {
+    position: relative;
     padding: 5px 0;
     width: 100%;
     color: inherit;
@@ -134,20 +136,56 @@
     border: none;
     cursor: pointer;
 
-    &:hover::after {
+    &:focus {
+      outline: none;
+      color: rgba($c-white, 0.8);
+    }
+  }
+
+  &__city-item:hover &__city::after {
       position: absolute;
       content: '';
       top: 0;
       bottom: 0;
       left: -10px;
-      right: -10px;
+      right: 0;
       background-color: rgba($c-white, 0.2);
-    }
+  }
 
-    &:focus {
-      outline: none;
-      color: rgba($c-white, 0.8);
-    }
+  &__city-item:last-child:hover &__city::after {
+    right: -10px;
+  }
+
+  &__city-delete {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  &__city-item:hover &__city-delete {
+    opacity: 1;
+  }
+
+  &__city-item:hover &__city-delete::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -10px;
+    background-color: rgba($c-white, 0.2);
+}
+
+  &__icon {
+    width: 11px;
+    height: 100%;
+  }
+
+  &__city-delete:hover &__icon {
+    transform: scale(1.2);
+    transition: scale 0.5s ease-out;
   }
 
   &__modal {
